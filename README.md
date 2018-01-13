@@ -89,7 +89,7 @@ public class ProducerConsumerTest {
     
 }
 
-    示例运行截图：
+    示例运行截图：
 
 
 2.消息监听器MessageListener介绍
@@ -119,14 +119,6 @@ ObjectMessage转换为对应的Serializable对象。
 
 4.spring对JMS的事务管理
 
-   Spring提供了一个JmsTransactionManager用于对JMS ConnectionFactory做事务管理。这将允许JMS应用利用Spring的事务管理特性。JmsTransactionManager在执行本地资源事务管理时将从指定的ConnectionFactory绑定一个ConnectionFactory/Session这样的配对到线程中。JmsTemplate会自动检测这样的事务资源，并对它们进行相应操作。在Java EE环境中，ConnectionFactory会池化Connection和Session，这样这些资源将会在整个事务中被有效地重复利用。在一个独立的环境中，使用Spring的SingleConnectionFactory时所有的事务将公用一个Connection，但是每个事务将保留自己独立的Session。JmsTemplate可以利用JtaTransactionManager和能够进行分布式的 JMS ConnectionFactory处理分布式事务。   在Spring整合JMS的应用中，如果要进行本地的事务管理的话只需要在定义对应的消息监听容器时指定其sessionTransacted属性为true，如：
-
-<bean id="jmsContainer"  
-    class="org.springframework.jms.listener.DefaultMessageListenerContainer">  
-    <property name="connectionFactory" ref="connectionFactory" />  
-    <property name="destination" ref="queueDestination" />  
-    <property name="messageListener" ref="consumerMessageListener" />  
-    <property name="sessionTransacted" value="true"/>  
-</bean>  
+   Spring提供了一个JmsTransactionManager用于对JMS ConnectionFactory做事务管理。这将允许JMS应用利用Spring的事务管理特性。JmsTransactionManager在执行本地资源事务管理时将从指定的ConnectionFactory绑定一个ConnectionFactory/Session这样的配对到线程中。JmsTemplate会自动检测这样的事务资源，并对它们进行相应操作。在Java EE环境中，ConnectionFactory会池化Connection和Session，这样这些资源将会在整个事务中被有效地重复利用。在一个独立的环境中，使用Spring的SingleConnectionFactory时所有的事务将公用一个Connection，但是每个事务将保留自己独立的Session。JmsTemplate可以利用JtaTransactionManager和能够进行分布式的 JMS ConnectionFactory处理分布式事务。   在Spring整合JMS的应用中，如果要进行本地的事务管理的话只需要在定义对应的消息监听容器时指定其sessionTransacted属性为true。
 
    该属性值默认为false，这样JMS在进行消息监听的时候就会进行事务控制，当在接收消息时监听器执行失败时JMS就会对接收到的消息进行回滚，对于SessionAwareMessageListener在接收到消息后发送一个返回消息时也处于同一事务下，但是对于其他操作如数据库访问等将不属于该事务控制。 如果想接收消息和数据库访问处于同一事务中，可配置一个外部的事务管理同时配置一个支持外部事务管理的消息监听容器（如DefaultMessageListenerContainer）。要配置这样一个参与分布式事务管理的消息监听容器，可以配置一个JtaTransactionManager，当然底层的JMS ConnectionFactory需要能够支持分布式事务管理，并正确地注册JtaTransactionManager。这样消息监听器进行消息接收和对应的数据库访问就会处于同一数据库控制下，当消息接收失败或数据库访问失败都会进行事务回滚操作。
