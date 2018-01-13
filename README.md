@@ -90,7 +90,7 @@ public class ProducerConsumerTest {
 }
 
     示例运行截图：
-! [实例截图] (https://images2017.cnblogs.com/blog/626790/201801/626790-20180113154609722-443005422.png)；
+! [image] (https://images2017.cnblogs.com/blog/626790/201801/626790-20180113154609722-443005422.png)
 
 2.消息监听器MessageListener介绍
 
