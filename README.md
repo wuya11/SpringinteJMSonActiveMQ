@@ -3,8 +3,10 @@ Spring 整合ActiveMQ定义消息管理。
 
 本文主要讲述ActiveMQ与spring整合的方案。介绍知识点包括spring，jms，activemq基于配置文件模式管理消息，消息监听器类型，消息转换类介绍，spring对JMS事物管理。
 1.spring整合activemq配置文件说明
+
 1.1配置ConnectionFactory
        ConnectionFactory是用于产生到JMS服务器的链接的，Spring提供了多个ConnectionFactory，有SingleConnectionFactory和CachingConnectionFactory。SingleConnectionFactory对于建立JMS服务器链接的请求会一直返回同一个链接，并且会忽略Connection的close方法调用。CachingConnectionFactory继承了SingleConnectionFactory，所以它拥有SingleConnectionFactory的所有功能，同时它还新增了缓存功能，它可以缓存Session、MessageProducer和MessageConsumer。这里使用SingleConnectionFactory来作为示例。
+       
 1.2配置生产者
     配置好ConnectionFactory之后就需要配置生产者。生产者负责产生消息并发送到JMS服务器，这通常对应的是一个业务逻辑服务实现类。但是服务实现类是怎么进行消息的发送的呢？这通常是利用Spring提供的JmsTemplate类来实现的，所以配置生产者其实最核心的就是配置进行消息发送的JmsTemplate。对于消息发送者而言，它在发送消息的时候要知道自己该往哪里发，为此，在定义JmsTemplate的时候需要往里面注入一个Spring提供的ConnectionFactory对象。
 1.3配置消费者
