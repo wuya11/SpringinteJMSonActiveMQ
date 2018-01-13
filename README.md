@@ -5,9 +5,9 @@ Spring 整合ActiveMQ定义消息管理。
 涉及知识点包括JMS消息定义，JMS消息监听器类型，消息转换类介绍，spring对JMS事物管理。
 详细信息介绍参考博客园博客：
 
-ActiveMQ入门介绍：http://www.cnblogs.com/wlandwl/p/activemq.html
+[ActiveMQ入门介绍](http://www.cnblogs.com/wlandwl/p/activemq.html)
 
-ActiveMQ进阶学习：https://www.cnblogs.com/wlandwl/p/activemqtwo.html
+[ActiveMQ进阶学习](https://www.cnblogs.com/wlandwl/p/activemqtwo.html)
 
 
 
