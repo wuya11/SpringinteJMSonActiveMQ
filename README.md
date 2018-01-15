@@ -9,5 +9,5 @@ Spring 整合ActiveMQ定义消息管理。
 
 [ActiveMQ进阶学习](https://www.cnblogs.com/wlandwl/p/activemqtwo.html)
 
-![baidu](https://images2017.cnblogs.com/blog/626790/201801/626790-20180113154609722-443005422.png "软件运行截图") 
+![软件运行截图](https://images2017.cnblogs.com/blog/626790/201801/626790-20180113154609722-443005422.png "软件运行截图") 
 
